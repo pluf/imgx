@@ -1,0 +1,45 @@
+{
+	"name" : "pluf/imgx",
+	"version" : "7.0.0",
+	"description" : "Image compressor and optimizer of pluf",
+	"type" : "library",
+	"license" : "MIT",
+	"authors" : [{
+			"name" : "Mostafa Barmshory",
+			"email" : "mostafa.barmshory@dpq.co.ir",
+			"homepage" : "http://dpq.co.ir",
+			"role" : "developer"
+		}, {
+			"name" : "Mohammad Hadi Mansouri",
+			"email" : "mohammad.hadi.mansouri@dpq.co.ir",
+			"homepage" : "http://dpq.co.ir",
+			"role" : "developer"
+		}
+	],
+	"minimum-stability" : "stable",
+	"autoload" : {
+		"psr-4" : {
+			"Pluf\\Imgx\\" : "src/"
+		}
+	},
+	"autoload-dev" : {
+		"psr-4" : {
+			"Pluf\\Tests\\" : "tests"
+		}
+	},
+	"homepage" : "https://github.com/pluf/imgx",
+	"support" : {
+		"email" : "info@pluf.ir",
+		"issues" : "https://github.com/pluf/imgx/issues",
+		"forum" : "https://github.com/pluf/imgx",
+		"wiki" : "https://github.com/pluf/imgx/wiki",
+		"source" : "https://github.com/pluf/imgx"
+	},
+	"keywords" : [
+		"pluf",
+		"php",
+		"cache",
+		"pluf-module",
+		"imagify"
+	]
+}
