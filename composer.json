@@ -44,6 +44,7 @@
 	],
 	"require" : {
 		"pluf/scion" : "7.0.x",
+		"intervention/image" : "^2.5",
 		"pluf/orm" : "7.0.x"
 	},
 	"require-dev" : {
