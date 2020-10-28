@@ -1,13 +1,21 @@
 <?php
 namespace Pluf\Imgx;
 
+use Pluf\Scion\ProcessTrackerInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Pluf\Scion\ProcessTracker;
 
 class Fetcher
 {
 
-    function __invoke(ServerRequestInterface $request, int $id, ProcessTracker $processTracker)
+    private string $modulePath;
+    private string $extension;
+    
+    function __construct(string $modulePath = '/tmp/storage/imgx', string $extension = 'jpeg'){
+        $this->modulePath = $modulePath;
+        $this->extension = $extension;
+    }
+    
+    function __invoke(ServerRequestInterface $request, int $id, ProcessTrackerInterface $processTracker)
     {
         // Parameters:
         // width,
@@ -21,13 +29,11 @@ class Fetcher
         $fit = array_key_exists('f', $params) ? $params['f'] : 'fill';
         $position = array_key_exists('p', $params) ? $params['p'] : 'center';
 
-        // FIXME: fetch storage path from pluf settings
-        $modulePath = '/tmp/storage/imgx';
-        $target = "$modulePath/$id\_w$width-h$height-f$fit-p$position.jpeg";
+        $target = "$this->modulePath/$id\_w$width-h$height-f$fit-p$position.$this->extension";
         if (is_file($target)) {
             return $target;
         }
-        $origin = "$modulePath/$id.jpeg";
+        $origin = "$this->modulePath/$id.$this->extension";
         // check if file exist
        return $processTracker->next([
             'target' => $target,
