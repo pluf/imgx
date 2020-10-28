@@ -23,14 +23,14 @@ class Fetcher
 
         // FIXME: fetch storage path from pluf settings
         $modulePath = '/tmp/storage/imgx';
-        $filePath = "$modulePath/$id\_w$width-h$height-f$fit-p$position";
-        if (is_file($filePath)) {
-            return $filePath;
+        $target = "$modulePath/$id\_w$width-h$height-f$fit-p$position.jpeg";
+        if (is_file($target)) {
+            return $target;
         }
-        $origin = "$modulePath/$id";
+        $origin = "$modulePath/$id.jpeg";
         // check if file exist
        return $processTracker->next([
-            'target' => $filePath,
+            'target' => $target,
             'oregin' => $origin,
             'params' => [
                 'w' => $width,
