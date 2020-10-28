@@ -22,13 +22,16 @@ class Fetcher
         $position = array_key_exists('p', $params) ? $params['p'] : 'center';
 
         // FIXME: fetch storage path from pluf settings
-        $modulePath = __DIR__ . '../../../../storage/imgx';
+        $modulePath = '/tmp/storage/imgx';
         $filePath = "$modulePath/$id\_w$width-h$height-f$fit-p$position";
         if (is_file($filePath)) {
             return $filePath;
         }
+        $origin = "$modulePath/$id";
         // check if file exist
-        $filePath = $processTracker->next([
+       return $processTracker->next([
+            'target' => $filePath,
+            'oregin' => $origin,
             'params' => [
                 'w' => $width,
                 'h' => $height,
@@ -36,7 +39,6 @@ class Fetcher
                 'p' => $position
             ]
         ]);
-        return $filePath;
     }
 }
 
