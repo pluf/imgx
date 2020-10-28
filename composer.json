@@ -43,10 +43,11 @@
 		"imagify"
 	],
 	"require" : {
-		"pluf/scion" : "7.0.x"
+		"pluf/scion" : "7.0.x",
+		"intervention/image" : "^2.5"
 	},
 	"require-dev" : {
 		"pluf/http2" : "7.0.x",
-		"phpunit/phpunit": "9.x"
+		"phpunit/phpunit" : "9.x"
 	}
 }
