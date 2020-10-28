@@ -2,7 +2,6 @@
 namespace Pluf\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Pluf\Http\RequestFactory;
 use Pluf\Imgx\Converter;
 
 class ConverterTest extends TestCase
@@ -12,21 +11,56 @@ class ConverterTest extends TestCase
      *
      * @test
      */
-    public function resize()
+    public function resizeFillCenter()
     {
-        $requestFactory = new RequestFactory();
-        $request = $requestFactory
-            ->createRequest('GET', '/imgx/api/v2/cms/contents/1/contetn')
-            ->withQueryParams([
-                'w' => 100,
-                'h' => 100
-            ]);
-
+        $origin = __DIR__ . '/assets/sample-1.jpeg';
         $target = '/tmp/imgx-test-sample-1-' . rand() . '.jpeg';
-
+        $params = [
+            'w' => 100,
+            'h' => 100,
+            'f' => 'fill',
+            'p' => 'center'
+        ];
         $cnv = new Converter();
-        $res = $cnv(__DIR__ . '/assets/sample-1.jpeg', $target, $request);
-
+        $res = $cnv($origin, $target, $params);
+        $this->assertTrue(is_file($res));
+    }
+    
+    /**
+     *
+     * @test
+     */
+    public function resizeCoverTop()
+    {
+        $origin = __DIR__ . '/assets/sample-1.jpeg';
+        $target = '/tmp/imgx-test-sample-1-' . rand() . '.jpeg';
+        $params = [
+            'w' => 100,
+            'h' => 100,
+            'f' => 'cover',
+            'p' => 'top'
+        ];
+        $cnv = new Converter();
+        $res = $cnv($origin, $target, $params);
+        $this->assertTrue(is_file($res));
+    }
+    
+    /**
+     *
+     * @test
+     */
+    public function resizeContainTopRight()
+    {
+        $origin = __DIR__ . '/assets/sample-1.jpeg';
+        $target = '/tmp/imgx-test-sample-1-' . rand() . '.jpeg';
+        $params = [
+            'w' => 500,
+            'h' => 300,
+            'f' => 'contain',
+            'p' => 'top-right'
+        ];
+        $cnv = new Converter();
+        $res = $cnv($origin, $target, $params);
         $this->assertTrue(is_file($res));
     }
 }
