@@ -32,7 +32,7 @@ class FetcherTest extends TestCase
         $position = 'top';
         $modulePath = __DIR__ . '/assets';
         $id = 1;
-        $target = "$modulePath/$id\_w$width-h$height-f$fit-p$position.jpeg";
+        $target = "$modulePath/$id"."_w$width-h$height-f$fit-p$position.jpeg";
         $request = $this->requestFactory->createServerRequest('GET', '/imgx/api/v2/cms/contents/1/content')// 
             ->withQueryParams([
                 'w' => $width,

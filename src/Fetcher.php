@@ -8,13 +8,15 @@ class Fetcher
 {
 
     private string $modulePath;
+
     private string $extension;
-    
-    function __construct(string $modulePath = '/tmp/storage/imgx', string $extension = 'jpeg'){
+
+    function __construct(string $modulePath = '/tmp/storage/imgx', string $extension = 'jpeg')
+    {
         $this->modulePath = $modulePath;
         $this->extension = $extension;
     }
-    
+
     function __invoke(ServerRequestInterface $request, int $id, ProcessTrackerInterface $processTracker)
     {
         // Parameters:
@@ -29,13 +31,13 @@ class Fetcher
         $fit = array_key_exists('f', $params) ? $params['f'] : 'fill';
         $position = array_key_exists('p', $params) ? $params['p'] : 'center';
 
-        $target = "$this->modulePath/$id\_w$width-h$height-f$fit-p$position.$this->extension";
+        $target = "$this->modulePath/" . $id . "_w$width-h$height-f$fit-p$position.$this->extension";
         if (is_file($target)) {
             return $target;
         }
         $origin = "$this->modulePath/$id.$this->extension";
         // check if file exist
-       return $processTracker->next([
+        return $processTracker->next([
             'target' => $target,
             'oregin' => $origin,
             'params' => [
