@@ -1,7 +1,7 @@
 <?php
 namespace Pluf\Imgx;
 
-use Pluf\Scion\ProcessTrackerInterface;
+use Pluf\Scion\UnitTrackerInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
 class Fetcher
@@ -17,7 +17,7 @@ class Fetcher
         $this->extension = $extension;
     }
 
-    function __invoke(ServerRequestInterface $request, int $id, ProcessTrackerInterface $processTracker)
+    function __invoke(ServerRequestInterface $request, int $id, UnitTrackerInterface $unitTracker)
     {
         // Parameters:
         // width,
@@ -37,9 +37,9 @@ class Fetcher
         }
         $origin = "$this->modulePath/$id.$this->extension";
         // check if file exist
-        return $processTracker->next([
+        return $unitTracker->next([
             'target' => $target,
-            'oregin' => $origin,
+            'origin' => $origin,
             'params' => [
                 'w' => $width,
                 'h' => $height,

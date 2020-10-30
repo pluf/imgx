@@ -1,9 +1,10 @@
 <?php
 namespace Pluf\Imgx;
 
-use Pluf\Data\Repository\ModelRepository;
-use Pluf\Scion\ProcessTrackerInterface;
 use Intervention\Image\ImageManager;
+use Pluf\Data\Repository\ModelRepository;
+use Pluf\Scion\UnitTrackerInterface;
+
 /**
  * Copy the content file into the original file.
  *
@@ -16,17 +17,19 @@ use Intervention\Image\ImageManager;
 class OriginMaker
 {
 
-    function __invoke(ModelRepository $contentRepository, int $id, string $origin, ProcessTrackerInterface $processTracker)
+    function __invoke(ModelRepository $contentRepository, int $id, string $origin, UnitTrackerInterface $unitTracker)
     {
         // open an image file
-        $manager = new ImageManager(array('driver' => 'imagick'));
+        $manager = new ImageManager(array(
+            'driver' => 'imagick'
+        ));
         if (! is_file($origin)) {
             $content = $contentRepository->getById($id);
             // copy($content->file_path, $origin);
             $img = $manager->make($content->file_path);
             $img->save($origin);
         }
-        return $processTracker->next();
+        return $unitTracker->next();
     }
 }
 
