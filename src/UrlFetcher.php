@@ -17,7 +17,7 @@ class UrlFetcher
         $this->extension = $extension;
     }
 
-    function __invoke(ServerRequestInterface $request, string $url, UnitTrackerInterface $processTracker)
+    function __invoke(ServerRequestInterface $request, string $url, UnitTrackerInterface $unitTracker)
     {
         // Parameters:
         // width,
@@ -38,9 +38,9 @@ class UrlFetcher
         }
         $origin = "$this->modulePath/$hash.$this->extension";
         // check if file exist
-        return $processTracker->next([
+        return $unitTracker->next([
             'target' => $target,
-            'oregin' => $origin,
+            'origin' => $origin,
             'params' => [
                 'w' => $width,
                 'h' => $height,

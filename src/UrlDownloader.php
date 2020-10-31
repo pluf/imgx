@@ -16,7 +16,7 @@ use Pluf\Scion\UnitTrackerInterface;
 class UrlDownloader
 {
 
-    function __invoke(string $url, string $origin, UnitTrackerInterface $processTracker)
+    function __invoke(string $url, string $origin, UnitTrackerInterface $unitTracker)
     {
         if (! is_file($origin)) {
             $manager = new ImageManager(array(
@@ -25,7 +25,7 @@ class UrlDownloader
             $img = $manager->make($url);
             $img->save($origin);
         }
-        return $processTracker->next();
+        return $unitTracker->next();
     }
 }
 
