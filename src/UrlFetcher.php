@@ -1,7 +1,7 @@
 <?php
 namespace Pluf\Imgx;
 
-use Pluf\Scion\ProcessTrackerInterface;
+use Pluf\Scion\UnitTrackerInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
 class UrlFetcher
@@ -17,7 +17,7 @@ class UrlFetcher
         $this->extension = $extension;
     }
 
-    function __invoke(ServerRequestInterface $request, string $url, ProcessTrackerInterface $processTracker)
+    function __invoke(ServerRequestInterface $request, string $url, UnitTrackerInterface $processTracker)
     {
         // Parameters:
         // width,

@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 use Pluf\Http\ResponseFactory;
 use Pluf\Http\ServerRequestFactory;
 use Pluf\Imgx\UrlFetcher;
-use Pluf\Scion\ProcessTrackerInterface;
+use Pluf\Scion\UnitTrackerInterface;
 
 class UrlFetcherTest extends TestCase
 {
@@ -42,7 +42,7 @@ class UrlFetcherTest extends TestCase
             'p' => $position
         ]);
         // process tracker mock
-        $processTracker = $this->createMock(ProcessTrackerInterface::class);
+        $processTracker = $this->createMock(UnitTrackerInterface::class);
         $processTracker->expects($this->never())
             ->method('next')
             ->willReturn($target);
@@ -74,7 +74,7 @@ class UrlFetcherTest extends TestCase
             'p' => $position
         ]);
         // process tracker mock
-        $processTracker = $this->createMock(ProcessTrackerInterface::class);
+        $processTracker = $this->createMock(UnitTrackerInterface::class);
         $processTracker->expects($this->once())
             ->method('next')
             ->willReturn($target);

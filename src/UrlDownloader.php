@@ -2,7 +2,7 @@
 namespace Pluf\Imgx;
 
 use Intervention\Image\ImageManager;
-use Pluf\Scion\ProcessTrackerInterface;
+use Pluf\Scion\UnitTrackerInterface;
 
 /**
  * Downloads the content of the file placed on the given URL into the original file.
@@ -16,7 +16,7 @@ use Pluf\Scion\ProcessTrackerInterface;
 class UrlDownloader
 {
 
-    function __invoke(string $url, string $origin, ProcessTrackerInterface $processTracker)
+    function __invoke(string $url, string $origin, UnitTrackerInterface $processTracker)
     {
         if (! is_file($origin)) {
             $manager = new ImageManager(array(
