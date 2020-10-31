@@ -130,7 +130,6 @@ class IntegrationTest extends TestCase
         });
 
         $container['contentRepository'] = Container::service(function ($connection, $schema, $modelDescriptionRepository) {
-            echo 'hi';
             return Repository::getInstance([
                 'model' => Content::class,
                 'connection' => $connection,
