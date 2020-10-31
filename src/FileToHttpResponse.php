@@ -1,10 +1,10 @@
 <?php
 namespace Pluf\Imgx;
 
+use Pluf\Scion\UnitTrackerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Exception;
-use Pluf\Scion\ProcessTrackerInterface;
 
 /**
  * Converts response file to a http response
@@ -44,13 +44,13 @@ class FileToHttpResponse
      *
      * @param ServerRequestInterface $request
      * @param ResponseInterface $response
-     * @param ProcessTrackerInterface $processTracker
+     * @param UnitTrackerInterface $processTracker
      * @throws Exception
      * @return \Psr\Http\Message\ResponseInterface
      */
-    function __invoke(ServerRequestInterface $request, ResponseInterface $response, ProcessTrackerInterface $processTracker)
+    function __invoke(ServerRequestInterface $request, ResponseInterface $response, UnitTrackerInterface $unitTracker)
     {
-        $filePath = $processTracker->next();
+        $filePath = $unitTracker->next();
         $fileName = basename($filePath);
 
         if (! file_exists($filePath)) {

@@ -2,10 +2,10 @@
 namespace Pluf\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Pluf\Imgx\Fetcher;
-use Pluf\Http\ServerRequestFactory;
 use Pluf\Http\ResponseFactory;
-use Pluf\Scion\ProcessTrackerInterface;
+use Pluf\Http\ServerRequestFactory;
+use Pluf\Imgx\Fetcher;
+use Pluf\Scion\UnitTrackerInterface;
 
 class FetcherTest extends TestCase
 {
@@ -41,7 +41,7 @@ class FetcherTest extends TestCase
                 'p' => $position
             ]);
         // process tracker mock
-        $processTracker = $this->createMock(ProcessTrackerInterface::class);
+        $processTracker = $this->createMock(UnitTrackerInterface::class);
         $processTracker->expects($this->never())
             ->method('next')
             ->willReturn($target);
@@ -72,7 +72,7 @@ class FetcherTest extends TestCase
             'p' => $position
         ]);
         // process tracker mock
-        $processTracker = $this->createMock(ProcessTrackerInterface::class);
+        $processTracker = $this->createMock(UnitTrackerInterface::class);
         $processTracker->expects($this->once())
         ->method('next')
         ->willReturn($target);

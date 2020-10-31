@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+   imgx:
+      build:
+         context: ./php-imagick
+      hostname: imgx
+      volumes:
+         - "/home:/home"
+         - ".:/var/www"
+      ports:
+         - "80:80"
+

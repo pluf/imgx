@@ -3,14 +3,14 @@ namespace Pluf\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Pluf\Data\ModelDescriptionRepository;
+use Pluf\Data\Repository;
 use Pluf\Data\Loader\MapModelDescriptionLoader;
+use Pluf\Data\Repository\ModelRepository;
 use Pluf\Data\Schema\SQLiteSchema;
 use Pluf\Db\Connection;
 use Pluf\Imgx\Content;
-use Pluf\Data\Repository;
-use Pluf\Scion\ProcessTrackerInterface;
 use Pluf\Imgx\OriginMaker;
-use Pluf\Data\Repository\ModelRepository;
+use Pluf\Scion\UnitTrackerInterface;
 
 class OriginMakerTest extends TestCase
 {
@@ -61,7 +61,7 @@ class OriginMakerTest extends TestCase
         $origin = __DIR__ . '/assets/sample-1.jpeg';
 
         // process tracker mock
-        $processTracker = $this->createMock(ProcessTrackerInterface::class);
+        $processTracker = $this->createMock(UnitTrackerInterface::class);
         $processTracker->expects($this->once())
             ->method('next')
             ->willReturn($origin);
@@ -90,7 +90,7 @@ class OriginMakerTest extends TestCase
         $content->file_size = filesize($content->file_path);
 
         // process tracker mock
-        $processTracker = $this->createMock(ProcessTrackerInterface::class);
+        $processTracker = $this->createMock(UnitTrackerInterface::class);
         $processTracker->expects($this->once())
             ->method('next')
             ->willReturn($origin);
@@ -120,7 +120,7 @@ class OriginMakerTest extends TestCase
         self::$repository->create($content);
 
         // process tracker mock
-        $processTracker = $this->createMock(ProcessTrackerInterface::class);
+        $processTracker = $this->createMock(UnitTrackerInterface::class);
         $processTracker->expects($this->once())
             ->method('next')
             ->willReturn($origin);

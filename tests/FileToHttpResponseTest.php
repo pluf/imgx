@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 use Pluf\Http\ResponseFactory;
 use Pluf\Http\ServerRequestFactory;
 use Pluf\Imgx\FileToHttpResponse;
-use Pluf\Scion\ProcessTrackerInterface;
+use Pluf\Scion\UnitTrackerInterface;
 
 class FileToHttpResponseTest extends TestCase
 {
@@ -31,7 +31,7 @@ class FileToHttpResponseTest extends TestCase
         $origin = __DIR__ . '/assets/sample-1.jpeg';
 
         // process tracker mock
-        $processTracker = $this->createMock(ProcessTrackerInterface::class);
+        $processTracker = $this->createMock(UnitTrackerInterface::class);
         $processTracker->expects($this->once())
             ->method('next')
             ->willReturn($origin);
