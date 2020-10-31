@@ -2,7 +2,6 @@
 namespace Pluf\Imgx;
 
 use Intervention\Image\ImageManager;
-
 use Pluf\Data\Repository\ModelRepository;
 use Pluf\Scion\UnitTrackerInterface;
 
@@ -20,13 +19,7 @@ class OriginMaker
 
     function __invoke(ModelRepository $contentRepository, int $id, string $origin, UnitTrackerInterface $unitTracker)
     {
-<<<<<<< HEAD
-=======
         // open an image file
-        $manager = new ImageManager(array(
-            'driver' => 'imagick'
-        ));
->>>>>>> branch 'develop' of https://github.com/pluf/imgx.git
         if (! is_file($origin)) {
             $manager = new ImageManager(array(
                 'driver' => 'imagick'
