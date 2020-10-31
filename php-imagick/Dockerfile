@@ -29,6 +29,7 @@ RUN apt-get update \
 	&& docker-php-source extract  \
 	# Install extensions
 	&& docker-php-ext-install bcmath \
+	&& docker-php-ext-install mysqli \
 	####################################################
 	# Imagick
 	####################################################
