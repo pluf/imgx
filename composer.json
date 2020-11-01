@@ -1,6 +1,5 @@
 {
 	"name" : "pluf/imgx",
-	"version" : "7.0.0",
 	"description" : "Image compressor and optimizer of pluf",
 	"type" : "library",
 	"license" : "MIT",
