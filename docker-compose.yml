@@ -3,7 +3,7 @@ version: "3.7"
 services:
    imgx:
       build:
-         context: ./php-imagick
+         context: .
       hostname: imgx
       volumes:
          - "/home:/home"
