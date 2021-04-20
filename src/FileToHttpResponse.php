@@ -33,7 +33,7 @@ class FileToHttpResponse
      * @param string $cacheControl
      *            sets the cache policy
      */
-    public function __construct(string $cacheControl = 'public,immutable', string $mimeTypes = '/etc/mime.types')
+    public function __construct(string $cacheControl = 'public,max-age=31536000,immutable', string $mimeTypes = '/etc/mime.types')
     {
         $this->cacheControl = $cacheControl;
         $this->mimeTypes = $mimeTypes;
