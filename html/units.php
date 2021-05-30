@@ -11,7 +11,6 @@ use Pluf\Core\Process;
 return [
     FileToHttpResponse::class,
     [
-
         new Process\Http\IfPathAndMethodIs('#^/imgx/api/v2/cms/contents/(?P<id>\d+)/content$#', [
             'GET'
         ]),
