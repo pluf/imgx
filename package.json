@@ -1,0 +1,23 @@
+{
+  "name": "lm",
+  "version": "1.0.0",
+  "description": "License manager is a micro system to generate and manage electronical signed licenses.",
+  "main": "index.js",
+  "scripts": {
+    "test": "newman run postman.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pluf/lm.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pluf/lm/issues"
+  },
+  "homepage": "https://github.com/pluf/lm#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "newman": "^4.6.1"
+  }
+}

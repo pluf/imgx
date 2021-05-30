@@ -11,7 +11,7 @@ class UrlFetcher
 
     private string $extension;
 
-    function __construct(string $modulePath = '/tmp/storage/imgx', string $extension = 'jpeg')
+    function __construct(string $modulePath = '/tmp', string $extension = 'jpeg')
     {
         $this->modulePath = $modulePath;
         $this->extension = $extension;

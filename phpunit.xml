@@ -22,6 +22,8 @@
         <var name="DB_PASSWD" value="" />
         <var name="DB_DBNAME" value="pluf_test" />
     	<var name="DB_SCHEMA" value="sqlite" />
+    	
+        <env name="API_KEY" value="fakeApiKey" force="true" />
     </php>
     <testsuites>
         <testsuite name="imgx">

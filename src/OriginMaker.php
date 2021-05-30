@@ -2,8 +2,9 @@
 namespace Pluf\Imgx;
 
 use Intervention\Image\ImageManager;
-use Pluf\Data\Repository\ModelRepository;
 use Pluf\Scion\UnitTrackerInterface;
+use Pluf\Orm\AssertionTrait;
+use Pluf\Orm\EntityManager;
 
 /**
  * Copy the content file into the original file.
@@ -16,16 +17,22 @@ use Pluf\Scion\UnitTrackerInterface;
  */
 class OriginMaker
 {
+    use AssertionTrait;
 
-    function __invoke(ModelRepository $contentRepository, int $id, string $origin, UnitTrackerInterface $unitTracker)
+    function __invoke(EntityManager $entityManager, int $id, string $origin, UnitTrackerInterface $unitTracker)
     {
         // open an image file
         if (! is_file($origin)) {
+            // fetch content
+            $content = $entityManager->find(Content::class, $id);
+            $this->assertTrue($content, 'Content with id {{id} not found', [
+                'id' => $id,
+            ]);
+            
+            // copy($content->file_path, $origin);
             $manager = new ImageManager(array(
                 'driver' => 'imagick'
             ));
-            $content = $contentRepository->getById($id);
-            // copy($content->file_path, $origin);
             $img = $manager->make($content->file_path);
             $img->save($origin);
         }
