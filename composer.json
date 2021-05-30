@@ -42,9 +42,13 @@
 		"imagify"
 	],
 	"require" : {
+		"pluf/core" : "^7.0",
+		"pluf/di" : "^7.0",
 		"pluf/scion" : "7.0.x",
-		"intervention/image" : "^2.5",
-		"pluf/orm" : "7.0.x"
+		"pluf/orm" : "^7.0",
+		"pluf/log" : "^7.0",
+		"atk4/dsql" : "2.3.x",
+		"intervention/image" : "^2.5"
 	},
 	"require-dev" : {
 		"pluf/http2" : "7.0.x",

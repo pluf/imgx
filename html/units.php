@@ -3,21 +3,28 @@ use Pluf\Imgx\Converter;
 use Pluf\Imgx\Fetcher;
 use Pluf\Imgx\FileToHttpResponse;
 use Pluf\Imgx\OriginMaker;
-use Pluf\Scion\Process\HttpProcess;
 use Pluf\Imgx\UrlDownloader;
 use Pluf\Imgx\UrlFetcher;
+
+use Pluf\Core\Process;
 
 return [
     FileToHttpResponse::class,
     [
-        new HttpProcess('#^/imgx/api/v2/cms/contents/(?P<id>\d+)/content$#'),
-        new Fetcher(__DIR__ . '/../tests/assets'),
+
+        new Process\Http\IfPathAndMethodIs('#^/imgx/api/v2/cms/contents/(?P<id>\d+)/content$#', [
+            'GET'
+        ]),
+        Process\Entity\EntityManagerFactory::class,
+        Fetcher::class,
         OriginMaker::class,
         Converter::class
     ],
     [
-        new HttpProcess('#^/imgx/(?P<url>http.+)$#'),
-        new UrlFetcher(__DIR__ . '/../tests/assets'),
+        new Process\Http\IfPathAndMethodIs('#^/imgx/(?P<url>http.+)$#', [
+            'GET'
+        ]),
+        UrlFetcher::class,
         UrlDownloader::class,
         Converter::class
     ],
