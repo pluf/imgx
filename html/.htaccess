@@ -1,0 +1,39 @@
+# Options +FollowSymLinks -MultiViews
+# Turn mod_rewrite on
+RewriteEngine On
+RewriteBase /
+
+RewriteRule ^index.php/ - [L]
+RewriteRule ^(.*)$ index.php/$1 [NC]
+
+<IfModule mod_deflate.c>
+	# Insert filter
+	SetOutputFilter DEFLATE
+	<IfModule mod_setenvif.c>
+		# Netscape 4.x has some problems…
+		BrowserMatch ^Mozilla/4 gzip-only-text/html
+
+		# Netscape 4.06-4.08 have some more problems
+		BrowserMatch ^Mozilla/4.0[678] no-gzip
+
+		# MSIE masquerades as Netscape, but it is fine
+		BrowserMatch bMSIE !no-gzip !gzip-only-text/html
+
+		# Don’t compress images
+		SetEnvIfNoCase Request_URI .(?:gif|jpe?g|png)$ no-gzip dont-vary
+	</IfModule>
+
+	<IfModule mod_headers.c>
+		# Make sure proxies don’t deliver the wrong content
+		Header append Vary User-Agent env=!dont-vary
+	</IfModule>
+</IfModule>
+
+<IfModule mod_php5.c>
+   php_value upload_max_filesize 50M
+   php_value post_max_size 50M
+</IfModule>
+<IfModule mod_php7.c>
+   php_value upload_max_filesize 50M
+   php_value post_max_size 50M
+</IfModule>

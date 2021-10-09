@@ -1,0 +1,57 @@
+{
+	"name" : "pluf/imgx",
+	"description" : "Image compressor and optimizer of pluf",
+	"type" : "library",
+	"license" : "MIT",
+	"authors" : [{
+			"name" : "Mostafa Barmshory",
+			"email" : "mostafa.barmshory@gmail.com",
+			"homepage" : "http://dpq.co.ir",
+			"role" : "developer"
+		}, {
+			"name" : "Mohammad Hadi Mansouri",
+			"email" : "mohammad.hadi.mansouri@dpq.co.ir",
+			"homepage" : "http://dpq.co.ir",
+			"role" : "developer"
+		}
+	],
+	"minimum-stability" : "stable",
+	"autoload" : {
+		"psr-4" : {
+			"Pluf\\Imgx\\" : "src/"
+		}
+	},
+	"autoload-dev" : {
+		"psr-4" : {
+			"Pluf\\Tests\\" : "tests"
+		}
+	},
+	"homepage" : "https://github.com/pluf/imgx",
+	"support" : {
+		"email" : "info@pluf.ir",
+		"issues" : "https://github.com/pluf/imgx/issues",
+		"forum" : "https://github.com/pluf/imgx",
+		"wiki" : "https://github.com/pluf/imgx/wiki",
+		"source" : "https://github.com/pluf/imgx"
+	},
+	"keywords" : [
+		"pluf",
+		"php",
+		"cache",
+		"pluf-module",
+		"imagify"
+	],
+	"require" : {
+		"pluf/core" : "^7.0",
+		"pluf/di" : "^7.0",
+		"pluf/scion" : "7.0.x",
+		"pluf/orm" : "^7.0",
+		"pluf/log" : "^7.0",
+		"atk4/dsql" : "2.3.x",
+		"intervention/image" : "^2.5"
+	},
+	"require-dev" : {
+		"pluf/http2" : "7.0.x",
+		"phpunit/phpunit" : "9.x"
+	}
+}

@@ -1,0 +1,55 @@
+version: "3.7"
+
+services:
+      
+   imgx:
+      build:
+         context: .
+      hostname: imgx
+      volumes:
+         - "/home:/home"
+         - ".:/var/www"
+      ports:
+         - "80:80"
+      environment:
+         # DB
+         - 'DB_DSN=mysql:host=db;port=3306;dbname=imgx'
+         - DB_SCHEMA=mysql
+         - DB_USER=root
+         - DB_PASS=P@ssw0rd
+         - DB_DEBUG=false
+         # ImageX
+         - IMGX_TEMP_DIR=/tmp
+      networks:
+         - imgxnet
+      depends_on:
+         - db
+         - flyway
+
+   db:
+      image: mysql
+      environment:
+         - MYSQL_ROOT_PASSWORD=P@ssw0rd
+      command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+      networks:
+         - imgxnet
+      
+   flyway:
+      image: flyway/flyway
+      command: -url=jdbc:mysql://db -schemas=imgx -user=root -password=P@ssw0rd -connectRetries=60 migrate
+      volumes:
+         - ./db/conf:/flyway/conf
+         - ./db/sql/:/flyway/sql/
+         - .:/var/www
+      depends_on:
+         - db
+      networks:
+         - imgxnet
+
+networks:
+   imgxnet:
+
+
+
+
+
